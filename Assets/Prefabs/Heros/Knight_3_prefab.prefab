@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2706874250283310477}
   - component: {fileID: -2839180428840287427}
   - component: {fileID: 4911893119793930606}
+  - component: {fileID: -7736087478757531388}
   m_Layer: 0
   m_Name: Knight_3_prefab
   m_TagString: Untagged
@@ -333,3 +334,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 1
+--- !u!114 &-7736087478757531388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000460824306410814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3dee1a01171484ba9aa9c60d885bf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  heroHealth: 30
+  attackPower: 15
+  heroStatus: 0
+  moveSpeed: 1.2
+  enemyCastle: {fileID: 0}
+  heroAnimator: {fileID: 2706874250283310477}

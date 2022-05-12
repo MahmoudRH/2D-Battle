@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HerosScript : MonoBehaviour
+public class Knight3Script : HerosScript
 {
-    /**
-     *This file is still unused. 
-     * 
-     */
-    int heroHealth,attackPower,moveSpeed,heroStatus;
 
+    Knight3Script()
+    {
+        heroHealth = 30;
+        attackPower = 15;
+        moveSpeed = 1.2f;
+        // printHeroInfo();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +21,6 @@ public class HerosScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        base.Update();
     }
 }
