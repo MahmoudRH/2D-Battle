@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class EnemyCastleScript : MonoBehaviour
+public class HerosCastleScript : MonoBehaviour
 {
     //public static float originalCastleHealth = 500;
     public static float castleHealth = 500;
@@ -15,8 +14,8 @@ public class EnemyCastleScript : MonoBehaviour
 
     void Start()
     {
-        castleHealthBar.value = castleHealth/500f;
-        healthBarText.text = Mathf.Floor(castleHealth/5f)+" %";
+        castleHealthBar.value = 1f;
+        healthBarText.text = "100 %";
     }
 
 

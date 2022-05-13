@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8927447365321551191}
   - component: {fileID: 8410750971510900617}
   - component: {fileID: 1245087457833558360}
+  - component: {fileID: -2903635063416830914}
   m_Layer: 0
   m_Name: ORK_02
   m_TagString: Untagged
@@ -102,3 +103,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-2903635063416830914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519735651738663526}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57a53e2facec40a4a87f6983905b8987, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orcHealth: 15
+  attackPower: 10
+  orcState: 0
+  moveSpeed: 1.4
+  target: 0
+  Hero_Target: 0
+  Castle_Target: 1
+  herosCastle: {fileID: 0}
+  orcAnimator: {fileID: 1245087457833558360}

@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class HerosScript : MonoBehaviour
 {
-    private int moving = 1, attacking = 2, dead = 3;
-    static int numOfAliveHeros =0 ;
+    public static int numOfAliveHeros = 0;
+    //hero states:
+    private int idle = 0, moving = 1, attacking = 2, dead = 3;
+    //hero properities: 
     public int heroHealth, attackPower, heroState;
     public float moveSpeed;
+    //target type:
     public int target;
     public int ORC_Target = 0, Castle_Target = 1;
+
     [SerializeField]
     Transform enemyCastle;
 
@@ -43,7 +47,10 @@ public class HerosScript : MonoBehaviour
 
                 if (target == Castle_Target)
                 {
-                    EnemyCastleScript.castleHealth -= attackPower * Time.deltaTime;
+                    if (EnemyCastleScript.castleHealth > 0)
+                        EnemyCastleScript.castleHealth -= attackPower * Time.deltaTime;
+                    else
+                        heroState = idle;
                 }
             }
             

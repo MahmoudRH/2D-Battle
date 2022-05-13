@@ -18,7 +18,13 @@ public class CameraMovement : MonoBehaviour
     private void Awake()
     {
         mapMinX = map.transform.position.x - map.bounds.size.x / 2f;
-        mapMaxX = map.transform.position.x + map.bounds.size.x / 2f; 
+        mapMaxX = map.transform.position.x + map.bounds.size.x / 2f;
+        mainCamera.transform.position = MoveCameraWithinBoundaries(mainCamera.transform.position);
+    }
+
+    private void Start()
+    {
+        
     }
 
     // Update is called once per frame

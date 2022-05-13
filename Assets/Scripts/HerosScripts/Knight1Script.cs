@@ -9,9 +9,7 @@ public class Knight1Script : HerosScript
     {
         heroHealth = 10;
         attackPower = 5;
-        moveSpeed = 1.4f;
-
-       // printHeroInfo();
+        moveSpeed = 1.4f;  
     }
 
 

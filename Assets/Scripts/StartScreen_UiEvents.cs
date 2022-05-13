@@ -5,7 +5,16 @@ using UnityEngine.UI;
 
 public class StartScreen_UiEvents : MonoBehaviour
 {
-    
+    [SerializeField]
+    RectTransform settingDialog;
+    [SerializeField]
+    Slider volumeSlider;
+
+    public void soundLevel()
+    {
+        AudioListener.volume = volumeSlider.value;
+    }
+
     public void QuitGame()
     {
         Application.Quit();
@@ -13,7 +22,12 @@ public class StartScreen_UiEvents : MonoBehaviour
 
     public void ShowSettingsPanel()
     {
-        //Create Settings Panel, Show & Hide It
+        settingDialog.gameObject.SetActive(true);
+    }
+
+    public void CloseSettingPanel()
+    {
+        settingDialog.gameObject.SetActive(false);
     }
 
 }
