@@ -13,15 +13,17 @@ public class Ui_events : MonoBehaviour
     public GameObject knight1, knight2, knight3;
 
     [SerializeField]
-    Transform castle; //forground part of the castle
+    Transform castle; //-> Hero's castle
 
     [SerializeField]
     Text wavesTxt, balanceTxt, healthTxt;
 
     [SerializeField]
     Button knight1Btn, knight2Btn, knight3Btn;
+
     [SerializeField]
     Image knight1BtnOverlay, knight2BtnOverlay, knight3BtnOverlay;
+
     private bool knight1Delay, knight2Delay, knight3Delay;
 
     private int currentSortingOrder = 1;

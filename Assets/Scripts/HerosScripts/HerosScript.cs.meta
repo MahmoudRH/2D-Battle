@@ -4,7 +4,9 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - enemyCastle: {fileID: 9071140012493318726, guid: e220a82583371234e922323971e0a13e, type: 3}
+  - enemyCastle: {instanceID: 0}
+  - heroAnimator: {instanceID: 0}
+  - enemyCastleParticles: {fileID: 7804226394273426123, guid: c7978068c6d4a694595621b910f55b19, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
