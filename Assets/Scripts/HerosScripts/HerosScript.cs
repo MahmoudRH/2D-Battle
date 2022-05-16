@@ -23,7 +23,7 @@ public class HerosScript : MonoBehaviour
     GameObject orcTarget;
     ORCsScript targetScript;
 
-
+    private bool reachedTheCastle = false;
     private void Awake()
     {
         numOfAliveHeros++;
@@ -57,7 +57,7 @@ public class HerosScript : MonoBehaviour
                 break;
 
             case CharacterState.ATTACKING:
-                Debug.Log("Case: Attacking");
+               // Debug.Log("Case: Attacking");
                 HeroIsAttacking();
                 break;
 
@@ -76,7 +76,7 @@ public class HerosScript : MonoBehaviour
     private void HeroIsDead()
     {
         AliveHerosList.Remove(this.gameObject);
-        Destroy(this.gameObject, 0.25f);
+        Destroy(this.gameObject, 0.30f);
         numOfAliveHeros--;
     }
 
@@ -108,8 +108,13 @@ public class HerosScript : MonoBehaviour
                 else
                 {
                     // target is dead, move to next one
-                    Debug.Log("Target is Dead");
-                    HeroState = CharacterState.MOVING;
+                    if (reachedTheCastle)
+                    {
+                        Target = TargetType.CastleTarget;
+                        HeroState = CharacterState.ATTACKING;
+                       
+                    }else
+                         HeroState = CharacterState.MOVING;
                 }
                 //else: move to next target
                 break;
@@ -122,7 +127,7 @@ public class HerosScript : MonoBehaviour
         {
             //move to their location
             orcTarget = ORCsScript.AliveORCsList[0];
-            targetScript = orcTarget.GetComponent<ORCsScript>();
+            //targetScript = orcTarget.GetComponent<ORCsScript>();
             Vector2 targetPosition = new Vector2(orcTarget.transform.position.x-2, orcTarget.transform.position.y-0.8f);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
@@ -140,17 +145,19 @@ public class HerosScript : MonoBehaviour
     }
 
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.name == "EnemyCastle")
         {
             Target = TargetType.CastleTarget;
             HeroState = CharacterState.ATTACKING;
+            reachedTheCastle = true;
         }
         else if (collision.tag == "ORC_TAG")
         {
             Target = TargetType.OrcTarget;
             HeroState = CharacterState.ATTACKING;
+            targetScript = collision.gameObject.GetComponent<ORCsScript>();
         }
 
     }

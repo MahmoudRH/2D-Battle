@@ -62,7 +62,7 @@ public class ORCsScript : MonoBehaviour
     private void OrcIsDead()
     {
         AliveORCsList.Remove(this.gameObject);
-        Destroy(this.gameObject, 0.25f);
+        Destroy(this.gameObject, 0.30f);
         numOfAliveORCs--;
     }
 
