@@ -15,7 +15,7 @@ public class EnemyCastleScript : MonoBehaviour
     private static ParticleSystem castlePartcicles;
 
     public float timerInSeconds = 1;
-    int instantiationDelay = 4;
+    public int instantiationDelay = 4;
 
     int currentSortingOrder = 1;
 
@@ -63,7 +63,10 @@ public class EnemyCastleScript : MonoBehaviour
             ResetTheTimer();
             instantiationDelay++;
         }
-
+        if(instantiationDelay > 15)
+        {
+            instantiationDelay = 5;
+        }
 
 
         if (castleHealth > 0)

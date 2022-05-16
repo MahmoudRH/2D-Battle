@@ -24,6 +24,7 @@ public class HerosScript : MonoBehaviour
     ORCsScript targetScript;
 
     private bool reachedTheCastle = false;
+    //private bool isCastleUnderAttack = false;// Enemies castle
     private void Awake()
     {
         numOfAliveHeros++;
@@ -90,15 +91,16 @@ public class HerosScript : MonoBehaviour
                 if (EnemyCastleScript.castleHealth > 0)
                 {
                     EnemyCastleScript.castleHealth -= attackPower * Time.deltaTime;
-                    EnemyCastleScript.ActivateParticles(true);
-                    EnemyCastleScript.PlayParticles();
+
+                   EnemyCastleScript.ActivateParticles(true);
+                   EnemyCastleScript.PlayParticles();
                 }
                 else
                 {
                     HeroState = CharacterState.IDLE;
-                    EnemyCastleScript.PauseParticles();
+                   EnemyCastleScript.PauseParticles();
                 }
-
+                
                 break;
 
             case TargetType.OrcTarget:
@@ -127,8 +129,7 @@ public class HerosScript : MonoBehaviour
         {
             //move to their location
             orcTarget = ORCsScript.AliveORCsList[0];
-            //targetScript = orcTarget.GetComponent<ORCsScript>();
-            Vector2 targetPosition = new Vector2(orcTarget.transform.position.x-2, orcTarget.transform.position.y-0.8f);
+            Vector2 targetPosition = new Vector2(orcTarget.transform.position.x-1.1f, orcTarget.transform.position.y-1.1f);
             transform.position = Vector2.MoveTowards(transform.position, targetPosition, moveSpeed * Time.deltaTime);
         }
         else

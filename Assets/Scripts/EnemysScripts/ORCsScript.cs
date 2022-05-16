@@ -17,6 +17,11 @@ public class ORCsScript : MonoBehaviour
     [SerializeField]
     Animator orcAnimator;
 
+    GameObject heroTarget;
+    HerosScript targetScript;
+
+    private bool reachedTheCastle = false;
+
     private void Awake()
     {
         numOfAliveORCs++;
@@ -79,6 +84,21 @@ public class ORCsScript : MonoBehaviour
 
             case TargetType.HeroTarget:
                 //Attack The Hero
+
+                if (targetScript.heroHealth > 0)
+                    targetScript.heroHealth -= attackPower * Time.deltaTime;
+                else
+                {
+                    // target is dead, move to next one
+                    if (reachedTheCastle)
+                    {
+                        Target = TargetType.CastleTarget;
+                        OrcState = CharacterState.ATTACKING;
+
+                    }
+                    else
+                        OrcState = CharacterState.MOVING;
+                }
                 break;
         }
     }
@@ -88,6 +108,9 @@ public class ORCsScript : MonoBehaviour
         if (HerosScript.numOfAliveHeros > 0)
         {
             //move to their location
+            heroTarget = HerosScript.AliveHerosList[0];
+            Vector2 targetPosition = new Vector2(heroTarget.transform.position.x + 1.1f, heroTarget.transform.position.y + 1.1f);
+            transform.position = Vector2.MoveTowards(transform.position, heroTarget.transform.position, moveSpeed * Time.deltaTime);
         }
         else
         {
@@ -108,7 +131,16 @@ public class ORCsScript : MonoBehaviour
         {
             Target = TargetType.CastleTarget;
             OrcState = CharacterState.ATTACKING;
+            reachedTheCastle = true;
         }
+        else if (collision.tag == "HERO_TAG")
+        {
+            Target = TargetType.HeroTarget;
+            OrcState = CharacterState.ATTACKING;
+            targetScript = collision.gameObject.GetComponent<HerosScript>();
+        }
+
+
     }
 
 }

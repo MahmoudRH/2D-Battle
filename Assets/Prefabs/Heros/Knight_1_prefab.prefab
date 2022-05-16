@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -7848343156187027244}
   m_Layer: 0
   m_Name: Knight_1_prefab
-  m_TagString: Untagged
+  m_TagString: HERO_TAG
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,9 +300,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3949f151943a14189969c757c4490c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 1.4
   heroHealth: 10
   attackPower: 5
-  heroStatus: 0
-  moveSpeed: 1.4
+  HeroState: 0
+  Target: 0
   enemyCastle: {fileID: 0}
   heroAnimator: {fileID: 3198025215272859139}

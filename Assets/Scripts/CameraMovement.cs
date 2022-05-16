@@ -22,10 +22,6 @@ public class CameraMovement : MonoBehaviour
         mainCamera.transform.position = MoveCameraWithinBoundaries(mainCamera.transform.position);
     }
 
-    private void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -39,7 +35,7 @@ public class CameraMovement : MonoBehaviour
         {
             Vector3 distance = startTouch - mainCamera.ScreenToWorldPoint(Input.mousePosition);
             Vector3 targetPosition = new Vector3(distance.x, 0, 0);
-            mainCamera.transform.position = MoveCameraWithinBoundaries(mainCamera.transform.position + targetPosition ); 
+            mainCamera.transform.position = MoveCameraWithinBoundaries(mainCamera.transform.position + targetPosition);
         }
     }
 
@@ -53,7 +49,7 @@ public class CameraMovement : MonoBehaviour
 
         float newXPosition = Mathf.Clamp(targetPosition.x, minX, maxX);
 
-        return new Vector3(newXPosition,targetPosition.y,targetPosition.z);
-   
+        return new Vector3(newXPosition, targetPosition.y, targetPosition.z);
+
     }
 }
