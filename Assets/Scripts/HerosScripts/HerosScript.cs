@@ -20,6 +20,9 @@ public class HerosScript : MonoBehaviour
     [SerializeField]
     Animator heroAnimator;
 
+    public AudioSource attackSource;
+    public AudioSource deathSource;
+
     GameObject orcTarget;
     ORCsScript targetScript;
 
@@ -76,6 +79,7 @@ public class HerosScript : MonoBehaviour
 
     private void HeroIsDead()
     {
+        deathSource.PlayOneShot(deathSource.clip);
         AliveHerosList.Remove(this.gameObject);
         Destroy(this.gameObject, 0.30f);
         numOfAliveHeros--;
@@ -91,14 +95,10 @@ public class HerosScript : MonoBehaviour
                 if (EnemyCastleScript.castleHealth > 0)
                 {
                     EnemyCastleScript.castleHealth -= attackPower * Time.deltaTime;
-
-                   EnemyCastleScript.ActivateParticles(true);
-                   EnemyCastleScript.PlayParticles();
                 }
                 else
                 {
                     HeroState = CharacterState.IDLE;
-                   EnemyCastleScript.PauseParticles();
                 }
                 
                 break;
@@ -156,11 +156,17 @@ public class HerosScript : MonoBehaviour
         }
         else if (collision.tag == "ORC_TAG")
         {
+            attackSource.PlayOneShot(attackSource.clip);
             Target = TargetType.OrcTarget;
             HeroState = CharacterState.ATTACKING;
             targetScript = collision.gameObject.GetComponent<ORCsScript>();
         }
 
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        attackSource.Pause();
     }
 
 

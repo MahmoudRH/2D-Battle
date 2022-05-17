@@ -24,6 +24,9 @@ public class Ui_events : MonoBehaviour
     [SerializeField]
     Image knight1BtnOverlay, knight2BtnOverlay, knight3BtnOverlay;
 
+    [SerializeField]
+    RectTransform pausePanel;
+
     private bool knight1Delay, knight2Delay, knight3Delay;
 
     private int currentSortingOrder = 1;
@@ -114,5 +117,10 @@ public class Ui_events : MonoBehaviour
 
         return isDelaied;
 
+    }
+
+    public void PauseGame()
+    {
+        pausePanel.gameObject.active = true;
     }
 }

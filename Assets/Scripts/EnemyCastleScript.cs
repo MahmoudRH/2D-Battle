@@ -11,8 +11,12 @@ public class EnemyCastleScript : MonoBehaviour
     Slider castleHealthBar;
     [SerializeField]
     Text healthBarText;
+    public AudioSource explosionSound;
+    public AudioSource brokenSound;
+    bool canPlay = true;
 
-    private static ParticleSystem castlePartcicles;
+
+    public ParticleSystem breakCastlePartcicles, somkCastlePartcicles;
 
     public float timerInSeconds = 1;
     public int instantiationDelay = 4;
@@ -25,6 +29,12 @@ public class EnemyCastleScript : MonoBehaviour
 
 
     private const int ORC1 = 1, ORC2 = 2, ORC3 = 3;
+
+
+    [SerializeField]
+    SpriteRenderer forground;
+    [SerializeField]
+    Sprite halfDestroyed, veryDestroyed;
 
     /*
      * level1 Variation:
@@ -40,11 +50,11 @@ public class EnemyCastleScript : MonoBehaviour
     Vector3 spawnLocation;
     Quaternion OrcsRotatoin;
     private float castleXPosition, castleYPosition;
+
     void Start()
     {
-        castlePartcicles = GetComponentInChildren<ParticleSystem>();
-        castlePartcicles.gameObject.SetActive(false);
-
+        somkCastlePartcicles.Pause();
+        breakCastlePartcicles.Pause();
         castleXPosition = this.gameObject.transform.position.x;
         castleYPosition = this.gameObject.transform.position.y;
         // spawnLocation = new Vector3(castleXPosition -2  , Random.Range(castleYPosition-5,castleYPosition+5),0);
@@ -75,6 +85,12 @@ public class EnemyCastleScript : MonoBehaviour
         }
         else
         {
+            canPlay = true;
+            if (canPlay)
+            {
+                explosionSound.PlayOneShot(explosionSound.clip);
+                canPlay = false;
+            }
             Destroy(this.gameObject);
         }
 
@@ -84,16 +100,33 @@ public class EnemyCastleScript : MonoBehaviour
     {
         castleHealthBar.value = castleHealth / 500f;
         healthBarText.text = Mathf.Floor(castleHealth / 5f) + " %";
+        
+
+        if (castleHealth / 5 <= 70)
+        {
+            if (canPlay)
+            {
+                explosionSound.PlayOneShot(explosionSound.clip);
+                canPlay = false;
+            }
+            somkCastlePartcicles.Play();
+            forground.sprite = halfDestroyed;
+        }
+        if (castleHealth / 5 <= 20)
+        {
+            forground.sprite = veryDestroyed;
+        }
     }
+
     private void IncreaseTheTimer()
     {
         timerInSeconds += Time.deltaTime;
     }
+
     private void ResetTheTimer()
     {
         timerInSeconds = 1;
     }
-
 
     private GameObject InstantiateOrc()
     {
@@ -121,16 +154,30 @@ public class EnemyCastleScript : MonoBehaviour
         return orcInstance;
     }
 
-    public static void ActivateParticles(bool isActivated)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        castlePartcicles.gameObject.SetActive(isActivated);
+        if (collision.gameObject.tag == "HERO_TAG")
+        {
+            brokenSound.PlayOneShot(brokenSound.clip);
+        }
     }
-    public static void PlayParticles()
+
+   
+
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        castlePartcicles.Play();
+        if(collision.gameObject.tag == "HERO_TAG")
+        {
+            breakCastlePartcicles.Play();
+        }
     }
-    public static void PauseParticles()
+
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        castlePartcicles.Pause();
+        if (collision.gameObject.tag == "HERO_TAG")
+        {
+            breakCastlePartcicles.Pause();
+            brokenSound.Pause();
+        }
     }
 }
