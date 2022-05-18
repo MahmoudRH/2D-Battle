@@ -25,6 +25,7 @@ public class HerosScript : MonoBehaviour
 
     GameObject orcTarget;
     ORCsScript targetScript;
+    bool canPlay = true;
 
     private bool reachedTheCastle = false;
     //private bool isCastleUnderAttack = false;// Enemies castle
@@ -79,9 +80,14 @@ public class HerosScript : MonoBehaviour
 
     private void HeroIsDead()
     {
-        deathSource.PlayOneShot(deathSource.clip);
+        if (canPlay)
+        {
+            deathSource.PlayOneShot(deathSource.clip);
+            canPlay = false;
+        }
+        
         AliveHerosList.Remove(this.gameObject);
-        Destroy(this.gameObject, 0.30f);
+        Destroy(this.gameObject, 1f);
         numOfAliveHeros--;
     }
 

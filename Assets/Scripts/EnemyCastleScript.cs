@@ -158,26 +158,14 @@ public class EnemyCastleScript : MonoBehaviour
     {
         if (collision.gameObject.tag == "HERO_TAG")
         {
-            brokenSound.PlayOneShot(brokenSound.clip);
-        }
-    }
-
-   
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.gameObject.tag == "HERO_TAG")
-        {
+            brokenSound.Play();
             breakCastlePartcicles.Play();
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "HERO_TAG")
-        {
-            breakCastlePartcicles.Pause();
-            brokenSound.Pause();
-        }
+        breakCastlePartcicles.Pause();
+        brokenSound.Pause();
     }
 }

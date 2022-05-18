@@ -63,28 +63,18 @@ public class HerosCastleScript : MonoBehaviour
 
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "ORC_TAG")
-        {
-            breakCastlePartcicles.Play();
-        }
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "ORC_TAG")
-        {
-            breakCastlePartcicles.Pause();
-            brokenSound.Pause();
-        }
+        breakCastlePartcicles.Pause();
+        brokenSound.Pause();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "ORC_TAG")
         {
-            brokenSound.PlayOneShot(brokenSound.clip);
+            breakCastlePartcicles.Play();
+            brokenSound.Play();
         }
     }
 }

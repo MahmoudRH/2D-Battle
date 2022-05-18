@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Ui_events : MonoBehaviour
@@ -25,6 +26,9 @@ public class Ui_events : MonoBehaviour
     Image knight1BtnOverlay, knight2BtnOverlay, knight3BtnOverlay;
 
     [SerializeField]
+    AudioSource playAudio, winAudio, loseAudio;
+
+    [SerializeField]
     RectTransform pausePanel;
 
     private bool knight1Delay, knight2Delay, knight3Delay;
@@ -32,6 +36,8 @@ public class Ui_events : MonoBehaviour
     private int currentSortingOrder = 1;
 
     private Vector3 spawnPosition;
+
+    float resume = 0.0f;
 
     private void Start()
     {
@@ -121,6 +127,30 @@ public class Ui_events : MonoBehaviour
 
     public void PauseGame()
     {
-        pausePanel.gameObject.active = true;
+        pausePanel.gameObject.SetActive(true);
+        resume = Time.timeScale;
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        pausePanel.gameObject.SetActive(false);
+        Time.timeScale = resume;
+    }
+
+    public void ExitGame()
+    {
+        pausePanel.gameObject.SetActive(false);
+        SceneManager.LoadScene("StartScene");
+    }
+
+    public void WinGame()
+    {
+        winAudio.PlayOneShot(winAudio.clip);
+    }
+
+    public void LoseGame()
+    {
+        loseAudio.PlayOneShot(loseAudio.clip);
     }
 }

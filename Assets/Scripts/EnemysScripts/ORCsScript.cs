@@ -20,7 +20,10 @@ public class ORCsScript : MonoBehaviour
     GameObject heroTarget;
     HerosScript targetScript;
 
+    public AudioSource deathSource;
+
     private bool reachedTheCastle = false;
+    bool canPlay = true;
 
     private void Awake()
     {
@@ -66,8 +69,13 @@ public class ORCsScript : MonoBehaviour
 
     private void OrcIsDead()
     {
+        if (canPlay)
+        {
+            deathSource.PlayOneShot(deathSource.clip);
+            canPlay = false;
+        }
         AliveORCsList.Remove(this.gameObject);
-        Destroy(this.gameObject, 0.30f);
+        Destroy(this.gameObject, 1f);
         numOfAliveORCs--;
     }
 
