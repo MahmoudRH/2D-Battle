@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class EnemyFire : MonoBehaviour
 {
-    public float speed = 20f;
+    float speed = 7f;
     Transform tr;
     public Rigidbody2D rb;
     GameObject heroTarget;
-    HerosScript hero; 
+    HerosScript hero;
+    public static float forse = 10;
+    public ParticleSystem smok;
     void Start()
     {
+        smok.Pause();
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         //rb.velocity = transform.right * speed * -1;
@@ -27,9 +30,10 @@ public class Fire : MonoBehaviour
     {
         if(collision.tag == "HERO_TAG")
         {
-            Destroy(this.gameObject);
+            smok.Play();
             hero = collision.gameObject.GetComponent<HerosScript>();
-            hero.heroHealth -= 50;
+            hero.heroHealth -= forse;
+            Destroy(this.gameObject);
         }
     }
 }

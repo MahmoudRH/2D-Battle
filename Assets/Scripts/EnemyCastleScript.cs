@@ -165,7 +165,11 @@ public class EnemyCastleScript : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        breakCastlePartcicles.Pause();
-        brokenSound.Pause();
+        if (collision.gameObject.tag == "HERO_TAG")
+        {
+            breakCastlePartcicles.Pause();
+            brokenSound.Pause();
+        }
+            
     }
 }

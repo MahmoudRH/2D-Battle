@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cannon : MonoBehaviour
+public class HeroCannom : MonoBehaviour
 {
     public Transform cannon;
     public GameObject fire;
@@ -9,21 +9,23 @@ public class Cannon : MonoBehaviour
     float dist = 0;
     public float timerInSeconds = 5;
     float secound = 0;
+    public AudioSource improvmentSound;
+    int improveTime = 0;
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        heroList = HerosScript.AliveHerosList;
+        heroList = ORCsScript.AliveORCsList;
         for (int i = 0; i < heroList.Count; i++)
         {
             dist = Vector3.Distance(cannon.position, heroList[i].transform.position);
-            if(dist <= 10)
+            if (dist <= 13)
             {
-                if(timerInSeconds > 0)
+                if (timerInSeconds > 0)
                 {
                     timerInSeconds -= Time.deltaTime;
                     secound--;
@@ -38,6 +40,17 @@ public class Cannon : MonoBehaviour
                     timerInSeconds = 5;
                 }
             }
+        }
+
+    }
+
+    private void OnMouseDown()
+    {
+        improveTime++;
+        if (improveTime <= 2)
+        {
+            improvmentSound.PlayOneShot(improvmentSound.clip);
+            EnemyFire.forse = 50f;
         }
     }
 }
