@@ -91,7 +91,8 @@ public class EnemyCastleScript : MonoBehaviour
                 explosionSound.PlayOneShot(explosionSound.clip);
                 canPlay = false;
             }
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
+            //Destroy(this.gameObject);
         }
 
     }

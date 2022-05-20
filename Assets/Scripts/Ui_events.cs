@@ -37,8 +37,6 @@ public class Ui_events : MonoBehaviour
 
     private Vector3 spawnPosition;
 
-    float resume = 0.0f;
-
     private void Start()
     {
         spawnPosition = new Vector3(castle.position.x + 2 ,-1,0);
@@ -128,20 +126,25 @@ public class Ui_events : MonoBehaviour
     public void PauseGame()
     {
         pausePanel.gameObject.SetActive(true);
-        resume = Time.timeScale;
         Time.timeScale = 0;
     }
 
     public void ResumeGame()
     {
         pausePanel.gameObject.SetActive(false);
-        Time.timeScale = resume;
+        Time.timeScale = 1;
     }
 
     public void ExitGame()
     {
         pausePanel.gameObject.SetActive(false);
         SceneManager.LoadScene("StartScene");
+    }
+
+    public void RestartGame()
+    {
+        
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void WinGame()
