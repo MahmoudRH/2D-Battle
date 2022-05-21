@@ -82,6 +82,7 @@ public class Ui_events : MonoBehaviour
                 {
                     Destroy(HerosScript.AliveHerosList[i].gameObject);
                 }
+                Time.timeScale = 0;
             }
             
         }
@@ -107,6 +108,7 @@ public class Ui_events : MonoBehaviour
                 {
                     Destroy(HerosScript.AliveHerosList[i].gameObject);
                 }
+                Time.timeScale = 0;
             }
         }
 

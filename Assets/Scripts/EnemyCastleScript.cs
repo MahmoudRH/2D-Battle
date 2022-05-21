@@ -64,8 +64,8 @@ public class EnemyCastleScript : MonoBehaviour
 
     void Update()
     {
-
-        IncreaseTheTimer();
+        if(!HerosCastleScript.isLose)
+            IncreaseTheTimer();
 
         if (Mathf.FloorToInt(timerInSeconds) % instantiationDelay == 0)
         {

@@ -65,20 +65,20 @@ public class ORCsScript : MonoBehaviour
         }
 
         //-> Update ORC animation
-        orcAnimator.SetInteger("orcState", (int)OrcState);
+        orcAnimator.SetInteger("orcState", (int) OrcState);
     }
 
     private void OrcIsDead()
     {
         if (canPlay)
         {
+            killes++;
             deathSource.PlayOneShot(deathSource.clip);
             canPlay = false;
         }
         AliveORCsList.Remove(this.gameObject);
         Destroy(this.gameObject, 1f);
         numOfAliveORCs--;
-        killes++;
     }
 
     private void OrcIsAttacking()

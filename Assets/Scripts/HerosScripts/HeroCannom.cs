@@ -5,7 +5,7 @@ public class HeroCannom : MonoBehaviour
 {
     public Transform cannon;
     public GameObject fire;
-    List<GameObject> heroList;
+    List<GameObject> OrcsList;
     float dist = 0;
     public float timerInSeconds = 5;
     float secound = 0;
@@ -19,10 +19,10 @@ public class HeroCannom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        heroList = ORCsScript.AliveORCsList;
-        for (int i = 0; i < heroList.Count; i++)
+        OrcsList = ORCsScript.AliveORCsList;
+        for (int i = 0; i < OrcsList.Count; i++)
         {
-            dist = Vector3.Distance(cannon.position, heroList[i].transform.position);
+            dist = Vector3.Distance(cannon.position, OrcsList[i].transform.position);
             if (dist <= 13 && HerosCastleScript.isLose == false)
             {
                 if (timerInSeconds > 0)
