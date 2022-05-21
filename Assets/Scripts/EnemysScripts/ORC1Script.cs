@@ -9,5 +9,6 @@ public class ORC1Script : ORCsScript
         orcHealth = 10;
         attackPower = 5;
         moveSpeed = 1.6f;
+        killingReward = 10;
     }
 }

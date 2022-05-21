@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class ORCsScript : MonoBehaviour
 {
-    public static int numOfAliveORCs = 0;
     public static List<GameObject> AliveORCsList = new List<GameObject>();
 
     //ORC properities: 
     public float attackPower, orcHealth, moveSpeed;
-
+    public int killingReward;
     TargetType Target;
     CharacterState OrcState;
 
@@ -28,7 +27,6 @@ public class ORCsScript : MonoBehaviour
 
     private void Awake()
     {
-        numOfAliveORCs++;
         AliveORCsList.Add(this.gameObject);
         OrcState = CharacterState.MOVING;
         herosCastle = GameObject.Find("HeroCastle").transform;
@@ -75,10 +73,10 @@ public class ORCsScript : MonoBehaviour
             killes++;
             deathSource.PlayOneShot(deathSource.clip);
             canPlay = false;
+            Ui_events.totalBalance += killingReward;
         }
         AliveORCsList.Remove(this.gameObject);
         Destroy(this.gameObject, 1f);
-        numOfAliveORCs--;
     }
 
     private void OrcIsAttacking()
@@ -115,7 +113,7 @@ public class ORCsScript : MonoBehaviour
 
     private void OrcIsMoving()
     {
-        if (HerosScript.numOfAliveHeros > 0)
+        if (HerosScript.AliveHerosList.Count > 0)
         {
             //move to their location
             heroTarget = HerosScript.AliveHerosList[0];

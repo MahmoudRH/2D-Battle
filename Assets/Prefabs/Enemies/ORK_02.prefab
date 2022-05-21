@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 196768155
-  m_SortingLayer: 0
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 33ac80dd39fa204488b4a33f85bee38f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -121,6 +121,7 @@ MonoBehaviour:
   attackPower: 10
   orcHealth: 15
   moveSpeed: 1.4
+  killingReward: 20
   herosCastle: {fileID: 0}
   orcAnimator: {fileID: 1245087457833558360}
   deathSource: {fileID: 2669444574946800592}

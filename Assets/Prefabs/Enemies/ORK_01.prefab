@@ -121,6 +121,7 @@ MonoBehaviour:
   attackPower: 5
   orcHealth: 10
   moveSpeed: 1.6
+  killingReward: 10
   herosCastle: {fileID: 0}
   orcAnimator: {fileID: 8105462667601957183}
   deathSource: {fileID: 5703846567149246006}

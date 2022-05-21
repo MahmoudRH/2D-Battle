@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class HerosScript : MonoBehaviour
 {
-    public static int numOfAliveHeros = 0;
     public static List<GameObject> AliveHerosList = new List<GameObject>();
 
     //hero properities: 
@@ -31,7 +30,6 @@ public class HerosScript : MonoBehaviour
     //private bool isCastleUnderAttack = false;// Enemies castle
     private void Awake()
     {
-        numOfAliveHeros++;
         AliveHerosList.Add(this.gameObject);
         HeroState = CharacterState.MOVING;
         enemyCastle = GameObject.Find("EnemyCastle").transform;
@@ -88,7 +86,6 @@ public class HerosScript : MonoBehaviour
         
         AliveHerosList.Remove(this.gameObject);
         Destroy(this.gameObject, 1f);
-        numOfAliveHeros--;
     }
 
     private void HeroIsAttacking()
@@ -131,7 +128,7 @@ public class HerosScript : MonoBehaviour
 
     private void HeroIsMoving()
     {
-        if (ORCsScript.numOfAliveORCs > 0)
+        if (ORCsScript.AliveORCsList.Count > 0)
         {
             //move to their location
             orcTarget = ORCsScript.AliveORCsList[0];

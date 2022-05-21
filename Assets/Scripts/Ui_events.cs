@@ -1,13 +1,11 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Ui_events : MonoBehaviour
 {
-    int totalBalance = 9999;
+    public static int totalBalance = 20;
     private const int KNIGHT1 = 1, KNIGHT2 = 2, KNIGHT3 = 3;
 
     //prefabs
@@ -64,6 +62,8 @@ public class Ui_events : MonoBehaviour
         knight1Delay =  ControlBtn(knight1Delay, knight1Btn, knight1BtnOverlay);
         knight2Delay =  ControlBtn(knight2Delay, knight2Btn, knight2BtnOverlay);
         knight3Delay =  ControlBtn(knight3Delay, knight3Btn, knight3BtnOverlay);
+
+        updateBalanceTxt();
 
         if (EnemyCastleScript.isWin)
         {
@@ -156,7 +156,7 @@ public class Ui_events : MonoBehaviour
         }
         heroInstance.GetComponent<SpriteRenderer>().sortingOrder = currentSortingOrder;
         currentSortingOrder++;
-        updateBalanceTxt();
+       // updateBalanceTxt();
     }
 
     private void updateBalanceTxt()
@@ -197,13 +197,15 @@ public class Ui_events : MonoBehaviour
 
     public void ExitGame()
     {
-        pausePanel.gameObject.SetActive(false);
+        ResumeGame();
         SceneManager.LoadScene("StartScene");
     }
 
     public void RestartGame()
     {
-        
+        ORCsScript.AliveORCsList.Clear();
+        HerosScript.AliveHerosList.Clear();
+        ResumeGame();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
