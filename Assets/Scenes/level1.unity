@@ -745,7 +745,7 @@ GameObject:
   - component: {fileID: 238287406}
   - component: {fileID: 238287405}
   m_Layer: 5
-  m_Name: Text
+  m_Name: title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6731,7 +6731,7 @@ GameObject:
   - component: {fileID: 620518912}
   - component: {fileID: 620518911}
   m_Layer: 5
-  m_Name: Text (2)
+  m_Name: score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7371,7 +7371,7 @@ GameObject:
   - component: {fileID: 899820273}
   - component: {fileID: 899820272}
   m_Layer: 5
-  m_Name: Image
+  m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7608,7 +7608,7 @@ GameObject:
   - component: {fileID: 958698533}
   - component: {fileID: 958698532}
   m_Layer: 5
-  m_Name: Button
+  m_Name: rePlayButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7883,7 +7883,7 @@ GameObject:
   - component: {fileID: 1023039356}
   - component: {fileID: 1023039355}
   m_Layer: 5
-  m_Name: Text (3)
+  m_Name: killes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8135,7 +8135,7 @@ GameObject:
   - component: {fileID: 1076806786}
   - component: {fileID: 1076806785}
   m_Layer: 5
-  m_Name: Image
+  m_Name: star1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8299,7 +8299,7 @@ GameObject:
   - component: {fileID: 1107558992}
   - component: {fileID: 1107558991}
   m_Layer: 5
-  m_Name: Text
+  m_Name: level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8851,7 +8851,7 @@ GameObject:
   - component: {fileID: 1290431947}
   - component: {fileID: 1290431946}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: star2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24216,7 +24216,7 @@ GameObject:
   - component: {fileID: 1635664430}
   - component: {fileID: 1635664429}
   m_Layer: 5
-  m_Name: Image (2)
+  m_Name: star3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25154,10 +25154,19 @@ MonoBehaviour:
   knight1BtnOverlay: {fileID: 665423237}
   knight2BtnOverlay: {fileID: 755930}
   knight3BtnOverlay: {fileID: 1742978629}
-  playAudio: {fileID: 0}
-  winAudio: {fileID: 0}
-  loseAudio: {fileID: 0}
+  playAudio: {fileID: 510447593}
+  winAudio: {fileID: 1539992432}
+  loseAudio: {fileID: 1808035711}
   pausePanel: {fileID: 265275397}
+  winPanel: {fileID: 2003722861}
+  winTitlePanel: {fileID: 238287405}
+  score: {fileID: 620518911}
+  killes: {fileID: 1023039355}
+  level: {fileID: 1107558991}
+  star1: {fileID: 1076806785}
+  star2: {fileID: 1290431946}
+  star3: {fileID: 1635664429}
+  starImage: {fileID: 21300050, guid: 1eaee135ce037439d925cee5e41ce026, type: 3}
 --- !u!1 &1808035709
 GameObject:
   m_ObjectHideFlags: 0
@@ -25436,7 +25445,7 @@ GameObject:
   - component: {fileID: 1930732991}
   - component: {fileID: 1930732990}
   m_Layer: 5
-  m_Name: Button
+  m_Name: nextLevelButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

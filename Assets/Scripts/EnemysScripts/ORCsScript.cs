@@ -19,6 +19,7 @@ public class ORCsScript : MonoBehaviour
 
     GameObject heroTarget;
     HerosScript targetScript;
+    public static int killes = 0;
 
     public AudioSource deathSource;
 
@@ -77,6 +78,7 @@ public class ORCsScript : MonoBehaviour
         AliveORCsList.Remove(this.gameObject);
         Destroy(this.gameObject, 1f);
         numOfAliveORCs--;
+        killes++;
     }
 
     private void OrcIsAttacking()

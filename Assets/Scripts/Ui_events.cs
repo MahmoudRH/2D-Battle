@@ -29,7 +29,7 @@ public class Ui_events : MonoBehaviour
     AudioSource playAudio, winAudio, loseAudio;
 
     [SerializeField]
-    RectTransform pausePanel;
+    RectTransform pausePanel, winPanel;
 
     private bool knight1Delay, knight2Delay, knight3Delay;
 
@@ -38,6 +38,17 @@ public class Ui_events : MonoBehaviour
     private Vector3 spawnPosition;
 
     float resume = 0.0f;
+
+    bool canPlay = true;
+
+    [SerializeField]
+    Text winTitlePanel, score, killes, level;
+
+    [SerializeField]
+    Image star1, star2, star3;
+
+    [SerializeField]
+    Sprite starImage;
 
     private void Start()
     {
@@ -53,6 +64,51 @@ public class Ui_events : MonoBehaviour
         knight1Delay =  ControlBtn(knight1Delay, knight1Btn, knight1BtnOverlay);
         knight2Delay =  ControlBtn(knight2Delay, knight2Btn, knight2BtnOverlay);
         knight3Delay =  ControlBtn(knight3Delay, knight3Btn, knight3BtnOverlay);
+
+        if (EnemyCastleScript.isWin)
+        {
+            if (canPlay)
+            {
+                winAudio.PlayOneShot(winAudio.clip);
+                canPlay = false;
+                winPanel.gameObject.SetActive(true);
+                score.text = (ORCsScript.killes * 5).ToString();
+                killes.text = ORCsScript.killes.ToString();
+                for (int i = 0; i < ORCsScript.AliveORCsList.Count; i++)
+                {
+                    Destroy(ORCsScript.AliveORCsList[i].gameObject);
+                }
+                for (int i = 0; i < HerosScript.AliveHerosList.Count; i++)
+                {
+                    Destroy(HerosScript.AliveHerosList[i].gameObject);
+                }
+            }
+            
+        }
+
+        if (HerosCastleScript.isLose)
+        {
+            if (canPlay)
+            {
+                loseAudio.PlayOneShot(loseAudio.clip);
+                canPlay = false;
+                winPanel.gameObject.SetActive(true);
+                winTitlePanel.text = "Game Over";
+                star1.sprite = starImage;
+                star2.sprite = starImage;
+                star3.sprite = starImage;
+                score.text = (ORCsScript.killes * 5).ToString();
+                killes.text = ORCsScript.killes.ToString();
+                for(int i = 0; i < ORCsScript.AliveORCsList.Count; i++)
+                {
+                    Destroy(ORCsScript.AliveORCsList[i].gameObject);
+                }
+                for (int i = 0; i < HerosScript.AliveHerosList.Count; i++)
+                {
+                    Destroy(HerosScript.AliveHerosList[i].gameObject);
+                }
+            }
+        }
 
     }
 

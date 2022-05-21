@@ -14,7 +14,7 @@ public class EnemyCastleScript : MonoBehaviour
     public AudioSource explosionSound;
     public AudioSource brokenSound;
     bool canPlay = true;
-
+    public static bool isWin = false;
 
     public ParticleSystem breakCastlePartcicles, somkCastlePartcicles;
 
@@ -91,6 +91,7 @@ public class EnemyCastleScript : MonoBehaviour
                 explosionSound.PlayOneShot(explosionSound.clip);
                 canPlay = false;
             }
+            isWin = true;
             Destroy(this.gameObject);
         }
 

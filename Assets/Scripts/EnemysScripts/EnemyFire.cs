@@ -9,7 +9,7 @@ public class EnemyFire : MonoBehaviour
     public Rigidbody2D rb;
     GameObject heroTarget;
     HerosScript hero;
-    public static float forse = 10;
+    public static float forse = 5;
     public ParticleSystem smok;
     void Start()
     {
@@ -21,9 +21,12 @@ public class EnemyFire : MonoBehaviour
 
     private void Update()
     {
-        heroTarget = HerosScript.AliveHerosList[0];
-        Vector2 targetPosition = new Vector2(heroTarget.transform.position.x - 1.1f, heroTarget.transform.position.y - 1.1f);
-        tr.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if(HerosScript.AliveHerosList.Count > 0)
+        {
+            heroTarget = HerosScript.AliveHerosList[0];
+            Vector2 targetPosition = new Vector2(heroTarget.transform.position.x - 1.1f, heroTarget.transform.position.y - 1.1f);
+            tr.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
