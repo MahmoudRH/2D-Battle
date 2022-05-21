@@ -51,6 +51,8 @@ public class EnemyCastleScript : MonoBehaviour
     Quaternion OrcsRotatoin;
     private float castleXPosition, castleYPosition;
 
+    public static List<GameObject> attackingHeros = new List<GameObject>();
+
     void Start()
     {
         somkCastlePartcicles.Pause();
@@ -95,6 +97,13 @@ public class EnemyCastleScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
+        if(attackingHeros.Count == 0)
+        {
+            breakCastlePartcicles.gameObject.SetActive(false);
+            breakCastlePartcicles.Pause();
+            brokenSound.Pause();
+        }
+
     }
 
     private void UpdateHealthUI()
@@ -135,7 +144,6 @@ public class EnemyCastleScript : MonoBehaviour
 
         int randomOrcType = Random.Range(0, level1Variation.Length - 1);
         int orcType = level1Variation[randomOrcType];
-        // Debug.Log("InstantiateOrc, orcType: " + orcType);
         spawnLocation = new Vector3(castleXPosition - 2, Random.Range(castleYPosition - 1, castleYPosition + 2), 0);
         switch (orcType)
         {
@@ -160,17 +168,20 @@ public class EnemyCastleScript : MonoBehaviour
         if (collision.gameObject.tag == "HERO_TAG")
         {
             brokenSound.Play();
+            breakCastlePartcicles.gameObject.SetActive(true);
             breakCastlePartcicles.Play();
+            attackingHeros.Add(collision.gameObject);
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+/*    private void OnTriggerExit2D(Collider2D collision)
     {
+      
         if (collision.gameObject.tag == "HERO_TAG")
         {
-            breakCastlePartcicles.Pause();
-            brokenSound.Pause();
+*//*            breakCastlePartcicles.Pause();
+            brokenSound.Pause();*//*
         }
             
-    }
+    }*/
 }

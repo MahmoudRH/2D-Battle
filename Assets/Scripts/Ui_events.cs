@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Ui_events : MonoBehaviour
 {
-    public static int totalBalance = 20;
+    public static int totalBalance = 30;
     private const int KNIGHT1 = 1, KNIGHT2 = 2, KNIGHT3 = 3;
 
     //prefabs

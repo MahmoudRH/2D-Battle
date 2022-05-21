@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +19,8 @@ public class HerosCastleScript : MonoBehaviour
     [SerializeField]
     Sprite halfDestroyed, veryDestroyed;
     public static bool isLose = false;
+
+    public static List<GameObject> attackingOrcs = new List<GameObject>();
 
     void Start()
     {
@@ -63,20 +64,24 @@ public class HerosCastleScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-    }
+        if (attackingOrcs.Count == 0)
+        {
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        breakCastlePartcicles.Pause();
-        brokenSound.Pause();
+             breakCastlePartcicles.Pause();
+             breakCastlePartcicles.gameObject.SetActive(false);
+             brokenSound.Pause();
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "ORC_TAG")
         {
+            breakCastlePartcicles.gameObject.SetActive(true);
             breakCastlePartcicles.Play();
             brokenSound.Play();
+            attackingOrcs.Add(collision.gameObject);
         }
     }
 }

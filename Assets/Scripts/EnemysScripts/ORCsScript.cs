@@ -75,6 +75,7 @@ public class ORCsScript : MonoBehaviour
             canPlay = false;
             Ui_events.totalBalance += killingReward;
         }
+        HerosCastleScript.attackingOrcs.Remove(this.gameObject);
         AliveORCsList.Remove(this.gameObject);
         Destroy(this.gameObject, 1f);
     }

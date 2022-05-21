@@ -83,7 +83,7 @@ public class HerosScript : MonoBehaviour
             deathSource.PlayOneShot(deathSource.clip);
             canPlay = false;
         }
-        
+        EnemyCastleScript.attackingHeros.Remove(this.gameObject);
         AliveHerosList.Remove(this.gameObject);
         Destroy(this.gameObject, 1f);
     }
