@@ -23,7 +23,7 @@ public class EnemyCannon : MonoBehaviour
         for (int i = 0; i < heroList.Count; i++)
         {
             dist = Vector3.Distance(cannon.position, heroList[i].transform.position);
-            if(dist <= 13)
+            if(dist <= 13 && EnemyCastleScript.isWin == false)
             {
                 if(timerInSeconds > 0)
                 {
@@ -50,7 +50,7 @@ public class EnemyCannon : MonoBehaviour
         if (improveTime <= 2)
         {
             improvmentSound.PlayOneShot(improvmentSound.clip);
-            EnemyFire.forse = 50f;
+            EnemyFire.forse = EnemyFire.forse * 2;
         }
     }
 }

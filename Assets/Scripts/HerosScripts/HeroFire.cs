@@ -8,7 +8,7 @@ public class HeroFire : MonoBehaviour
     Transform tr;
     GameObject oRKTarget;
     ORCsScript oRC;
-    public static float forse = 10;
+    public static float forse = 5;
     //public ParticleSystem smok;
     void Start()
     {
@@ -19,9 +19,12 @@ public class HeroFire : MonoBehaviour
 
     private void Update()
     {
-        oRKTarget = ORCsScript.AliveORCsList[0];
-        Vector2 targetPosition = new Vector2(oRKTarget.transform.position.x - 1.1f, oRKTarget.transform.position.y - 1.1f);
-        tr.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if(ORCsScript.AliveORCsList.Count > 0)
+        {
+            oRKTarget = ORCsScript.AliveORCsList[0];
+            Vector2 targetPosition = new Vector2(oRKTarget.transform.position.x - 1.1f, oRKTarget.transform.position.y - 1.1f);
+            tr.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

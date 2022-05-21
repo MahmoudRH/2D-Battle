@@ -19,6 +19,7 @@ public class HerosCastleScript : MonoBehaviour
     SpriteRenderer forground;
     [SerializeField]
     Sprite halfDestroyed, veryDestroyed;
+    public static bool isLose = false;
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class HerosCastleScript : MonoBehaviour
                 explosionSound.PlayOneShot(explosionSound.clip);
                 canPlay = false;
             }
+            isLose = true;
             Destroy(this.gameObject);
         }
 
