@@ -25,6 +25,13 @@ public class HeroFire : MonoBehaviour
             Vector2 targetPosition = new Vector2(oRKTarget.transform.position.x - 1.1f, oRKTarget.transform.position.y - 1.1f);
             tr.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
         }
+        else
+        {
+            if (this.gameObject != null)
+            {
+                Destroy(this.gameObject);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
