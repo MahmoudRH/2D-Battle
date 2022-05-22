@@ -378,7 +378,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 993716375
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 031b3eeb6a602a64e9bfc2b2a7cbec11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -398,13 +398,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 14989722}
-  m_LocalRotation: {x: -0, y: -0, z: -0.17364825, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.9100008, y: 1.9, z: 0}
   m_LocalScale: {x: 5.226604, y: 5.226604, z: 5.226604}
   m_Children: []
   m_Father: {fileID: 955965027}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &14989727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,6 +421,7 @@ MonoBehaviour:
   fire: {fileID: 3241817618342396739, guid: dfef9f20696fc3c409da98e3d8099ee6, type: 3}
   timerInSeconds: 5
   improvmentSound: {fileID: 1539992432}
+  castle: {fileID: 474933220}
 --- !u!1 &119572587
 GameObject:
   m_ObjectHideFlags: 0
@@ -6222,7 +6223,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 993716375
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: 8e0f33cd560aa5242837bb26de965cd9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24442,7 +24443,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 993716375
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: fe93cc9beaa28314fb4b17af503e7ee3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24678,7 +24679,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 993716375
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1a4b2f78b17d12349b6dc5963a8a49ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25014,6 +25015,7 @@ MonoBehaviour:
   fire: {fileID: 1140731667407208184, guid: 6d1416794a5ec6c428c577a5452b634c, type: 3}
   timerInSeconds: 5
   improvmentSound: {fileID: 1758524124}
+  castle: {fileID: 229859936}
 --- !u!212 &1758524121
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -25052,7 +25054,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 993716375
-  m_SortingLayer: -1
+  m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 031b3eeb6a602a64e9bfc2b2a7cbec11, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -25072,13 +25074,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758524119}
-  m_LocalRotation: {x: -0, y: -0, z: 0.17364816, w: 0.9848078}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5600004, y: 1.2800001, z: 0}
   m_LocalScale: {x: 5.2266045, y: 5.2266045, z: 5.226604}
   m_Children: []
   m_Father: {fileID: 1794983798}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 20}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &1758524123
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -11,20 +11,29 @@ public class HeroCannom : MonoBehaviour
     float secound = 0;
     public AudioSource improvmentSound;
     int improveTime = 0;
+    [SerializeField]
+    public SpriteRenderer castle;
+    float angle = 0f;
     void Start()
     {
-
+    
     }
 
     // Update is called once per frame
     void Update()
     {
         OrcsList = ORCsScript.AliveORCsList;
-        for (int i = 0; i < OrcsList.Count; i++)
+        if(OrcsList.Count > 0)
         {
-            dist = Vector3.Distance(cannon.position, OrcsList[i].transform.position);
+            dist = Vector3.Distance(cannon.position, OrcsList[0].transform.position);
             if (dist <= 13 && HerosCastleScript.isLose == false)
             {
+                angle = (Mathf.Abs(Mathf.Cos(dist / castle.bounds.size.y)) * -100);
+                if(angle < -20)
+                {
+                    angle = (Mathf.Abs(Mathf.Cos(dist / castle.bounds.size.y)) * -100) + 20;
+                }
+                cannon.transform.rotation = Quaternion.Euler(new Vector3(cannon.transform.rotation.eulerAngles.x, cannon.transform.rotation.eulerAngles.y, angle));
                 if (timerInSeconds > 0)
                 {
                     timerInSeconds -= Time.deltaTime;
@@ -32,7 +41,8 @@ public class HeroCannom : MonoBehaviour
                     secound = Mathf.FloorToInt(timerInSeconds % 60);
                     if (secound == -1.00f)
                     {
-                        Instantiate(fire, new Vector3(cannon.position.x - 2, cannon.position.y, 0), cannon.rotation);
+                        cannon.transform.rotation = Quaternion.Euler(new Vector3(cannon.transform.rotation.eulerAngles.x, cannon.transform.rotation.eulerAngles.y, angle));
+                        Instantiate(fire, new Vector3(cannon.position.x, cannon.position.y, 0), cannon.rotation);
                     }
                 }
                 else
@@ -41,16 +51,19 @@ public class HeroCannom : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void OnMouseDown()
     {
-        improveTime++;
-        if (improveTime <= 2)
+        if(Ui_events.totalBalance >= 50)
         {
-            improvmentSound.PlayOneShot(improvmentSound.clip);
-            HeroFire.forse = HeroFire.forse * 2;
+            improveTime++;
+            if (improveTime <= 2)
+            {
+                improvmentSound.PlayOneShot(improvmentSound.clip);
+                HeroFire.forse = HeroFire.forse * 2;
+                Ui_events.totalBalance -= 50;
+            }
         }
     }
 }

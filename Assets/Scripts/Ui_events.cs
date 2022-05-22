@@ -35,8 +35,6 @@ public class Ui_events : MonoBehaviour
 
     private Vector3 spawnPosition;
 
-    float resume = 0.0f;
-
     bool canPlay = true;
 
     [SerializeField]
