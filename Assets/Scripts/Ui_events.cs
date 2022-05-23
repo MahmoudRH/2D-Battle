@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Ui_events : MonoBehaviour
 {
-    public static int totalBalance = 30;
+    public static int totalBalance;
     private const int KNIGHT1 = 1, KNIGHT2 = 2, KNIGHT3 = 3;
 
     //prefabs
@@ -15,7 +15,7 @@ public class Ui_events : MonoBehaviour
     Transform castle; //-> Hero's castle
 
     [SerializeField]
-    Text wavesTxt, balanceTxt, healthTxt;
+    Text levelsTxt, balanceTxt, healthTxt;
 
     [SerializeField]
     Button knight1Btn, knight2Btn, knight3Btn;
@@ -46,10 +46,21 @@ public class Ui_events : MonoBehaviour
     [SerializeField]
     Sprite starImage;
 
+    [SerializeField]
+    Button moveToNextLvlBtn;
+
+    private int currentPlayerLevel;
+
     private void Start()
     {
-        spawnPosition = new Vector3(castle.position.x + 2 ,-1,0);
+       
+        currentPlayerLevel = levelsSceneScript.selectedLevel;
+        EnemyCastleScript.setUpCastleForLevel(currentPlayerLevel);
+        HerosCastleScript.setUpCastleForLevel(currentPlayerLevel);
+        SetupStartMoneyForLevel(currentPlayerLevel);
+        levelsTxt.text = "Level " + currentPlayerLevel;
         balanceTxt.text = totalBalance + " $";
+        spawnPosition = new Vector3(castle.position.x + 2, -1, 0);
     }
     private void Update()
     {
@@ -72,15 +83,10 @@ public class Ui_events : MonoBehaviour
                 winPanel.gameObject.SetActive(true);
                 score.text = (ORCsScript.killes * 5).ToString();
                 killes.text = ORCsScript.killes.ToString();
-                for (int i = 0; i < ORCsScript.AliveORCsList.Count; i++)
-                {
-                    Destroy(ORCsScript.AliveORCsList[i].gameObject);
-                }
-                for (int i = 0; i < HerosScript.AliveHerosList.Count; i++)
-                {
-                    Destroy(HerosScript.AliveHerosList[i].gameObject);
-                }
+                moveToNextLvlBtn.gameObject.SetActive(true);
                 Time.timeScale = 0;
+                LevelManager.SaveGame(new PlayerData(currentPlayerLevel+1)); // currentLevel
+                EnemyCastleScript.isWin = false; //resetting the game
             }
             
         }
@@ -96,17 +102,11 @@ public class Ui_events : MonoBehaviour
                 star1.sprite = starImage;
                 star2.sprite = starImage;
                 star3.sprite = starImage;
+                moveToNextLvlBtn.gameObject.SetActive(false);
                 score.text = (ORCsScript.killes * 5).ToString();
                 killes.text = ORCsScript.killes.ToString();
-                for(int i = 0; i < ORCsScript.AliveORCsList.Count; i++)
-                {
-                    Destroy(ORCsScript.AliveORCsList[i].gameObject);
-                }
-                for (int i = 0; i < HerosScript.AliveHerosList.Count; i++)
-                {
-                    Destroy(HerosScript.AliveHerosList[i].gameObject);
-                }
                 Time.timeScale = 0;
+                HerosCastleScript.isLose = false;
             }
         }
 
@@ -162,6 +162,7 @@ public class Ui_events : MonoBehaviour
         balanceTxt.text = totalBalance + " $";
     }
 
+    //-> For Buy Buttons
     private bool ControlBtn(bool isDelaied,Button btn, Image overlay)
     {
         if (isDelaied)
@@ -190,6 +191,7 @@ public class Ui_events : MonoBehaviour
     public void ResumeGame()
     {
         pausePanel.gameObject.SetActive(false);
+        winPanel.gameObject.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -207,6 +209,11 @@ public class Ui_events : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void NextLevelBtn()
+    {
+        levelsSceneScript.selectedLevel = currentPlayerLevel + 1;
+        RestartGame();
+    }
     public void WinGame()
     {
         winAudio.PlayOneShot(winAudio.clip);
@@ -215,5 +222,10 @@ public class Ui_events : MonoBehaviour
     public void LoseGame()
     {
         loseAudio.PlayOneShot(loseAudio.clip);
+    }
+
+    private void SetupStartMoneyForLevel(int level)
+    {
+        totalBalance = 15 * level;
     }
 }

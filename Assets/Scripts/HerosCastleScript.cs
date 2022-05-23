@@ -84,4 +84,11 @@ public class HerosCastleScript : MonoBehaviour
             attackingOrcs.Add(collision.gameObject);
         }
     }
+
+    public static void setUpCastleForLevel(int level)
+    {
+        castleHealth = 500;
+        //the function just reset the castle health to 100 in case its damaged or destroyed.
+        //should we change anything else?
+    }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +5,7 @@ using UnityEngine.UI;
 
 public class EnemyCastleScript : MonoBehaviour
 {
-    public static float castleHealth = 500;
+    public static float castleHealth;
     [SerializeField]
     Slider castleHealthBar;
     [SerializeField]
@@ -43,15 +42,21 @@ public class EnemyCastleScript : MonoBehaviour
      *  3 -> ORC3
      */
 
-    private int[] level1Variation = {ORC1, ORC1, ORC1, ORC1, ORC1, ORC1, ORC1, ORC1, ORC1,
-                                     ORC2, ORC2, ORC2, ORC2, ORC2,
-                                     ORC3, ORC3, ORC3 };
+    private static int[] levelOrcsVariation = {ORC1, ORC1, ORC1, ORC1, ORC1, ORC1, ORC1, ORC1, ORC1,
+                                        ORC2, ORC2, ORC2, ORC2, ORC2,
+                                        ORC3, ORC3, ORC3 };
 
     Vector3 spawnLocation;
     Quaternion OrcsRotatoin;
     private float castleXPosition, castleYPosition;
 
     public static List<GameObject> attackingHeros = new List<GameObject>();
+
+
+
+    private static float attackPowerExtra, orcHealthExtra, moveSpeedExtra;
+    private static int killingRewardExtra;
+
 
     void Start()
     {
@@ -66,7 +71,7 @@ public class EnemyCastleScript : MonoBehaviour
 
     void Update()
     {
-        if(!HerosCastleScript.isLose)
+        if (!HerosCastleScript.isLose)
             IncreaseTheTimer();
 
         if (Mathf.FloorToInt(timerInSeconds) % instantiationDelay == 0)
@@ -75,7 +80,7 @@ public class EnemyCastleScript : MonoBehaviour
             ResetTheTimer();
             instantiationDelay++;
         }
-        if(instantiationDelay > 15)
+        if (instantiationDelay > 15)
         {
             instantiationDelay = 5;
         }
@@ -97,7 +102,7 @@ public class EnemyCastleScript : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        if(attackingHeros.Count == 0)
+        if (attackingHeros.Count == 0)
         {
             breakCastlePartcicles.gameObject.SetActive(false);
             breakCastlePartcicles.Pause();
@@ -110,7 +115,7 @@ public class EnemyCastleScript : MonoBehaviour
     {
         castleHealthBar.value = castleHealth / 500f;
         healthBarText.text = Mathf.Floor(castleHealth / 5f) + " %";
-        
+
 
         if (castleHealth / 5 <= 70)
         {
@@ -142,8 +147,8 @@ public class EnemyCastleScript : MonoBehaviour
     {
         GameObject orcInstance = null;
 
-        int randomOrcType = Random.Range(0, level1Variation.Length - 1);
-        int orcType = level1Variation[randomOrcType];
+        int randomOrcType = Random.Range(0, levelOrcsVariation.Length - 1);
+        int orcType = levelOrcsVariation[randomOrcType];
         spawnLocation = new Vector3(castleXPosition - 2, Random.Range(castleYPosition - 1, castleYPosition + 2), 0);
         switch (orcType)
         {
@@ -158,6 +163,15 @@ public class EnemyCastleScript : MonoBehaviour
                 break;
         }
         orcInstance.GetComponent<SpriteRenderer>().sortingOrder = currentSortingOrder;
+
+        //Adding Extras to Orc Instance
+        orcInstance.GetComponent<ORCsScript>().orcHealth += orcHealthExtra;        
+        orcInstance.GetComponent<ORCsScript>().attackPower += attackPowerExtra;        
+        orcInstance.GetComponent<ORCsScript>().killingReward += killingRewardExtra;        
+        orcInstance.GetComponent<ORCsScript>().moveSpeed += moveSpeedExtra;        
+
+
+
         currentSortingOrder++;
 
         return orcInstance;
@@ -174,14 +188,16 @@ public class EnemyCastleScript : MonoBehaviour
         }
     }
 
-/*    private void OnTriggerExit2D(Collider2D collision)
+    public static void setUpCastleForLevel(int level)
     {
-      
-        if (collision.gameObject.tag == "HERO_TAG")
-        {
-*//*            breakCastlePartcicles.Pause();
-            brokenSound.Pause();*//*
-        }
-            
-    }*/
+        castleHealth = 450 + (50 * level);
+        setUpOrcInstanceExtras(level);
+    }
+    private static void setUpOrcInstanceExtras(int level)
+    {
+        orcHealthExtra = 1 *level;
+        attackPowerExtra = 1 * level;
+        killingRewardExtra = 1 * level;
+        moveSpeedExtra = 0.02f * level;
+    }
 }
